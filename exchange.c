@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 
     if (argc != 3 || needs_help) {
         fprintf(needs_help ? stdout : stderr,
-                "Exchange the names of two files.\n"
+                "Atomically exchange two files.\n"
                 "Usage: %s <file1> <file2>\n", argv[0]);
         return !needs_help;
     }
