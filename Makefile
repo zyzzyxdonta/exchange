@@ -13,4 +13,4 @@ clean:
 	rm -f $(PROGRAM)
 
 install: $(PROGRAM)
-	install -s $(PROGRAM) $(DEST)
+	install -s -D $(PROGRAM) $(DEST)/$(PROGRAM)
