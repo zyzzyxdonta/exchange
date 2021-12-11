@@ -1,6 +1,4 @@
-#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
-#endif
 
 #include <errno.h>
 #include <fcntl.h>
@@ -11,16 +9,19 @@
 
 int main(int argc, char *argv[]) {
 
-    bool needs_help = false;
+    bool needs_help = argc == 1;
     if (argc > 1) {
         needs_help = (0 == strcmp(argv[1], "-h"))
                   || (0 == strcmp(argv[1], "--help"));
     }
 
     if (argc != 3 || needs_help) {
-        fprintf(needs_help ? stdout : stderr,
-                "Atomically exchange two files.\n"
-                "Usage: %s <file1> <file2>\n", argv[0]);
+        printf("Atomically exchange two files.\n"
+               "\n"
+               "Usage:\n"
+               "        %s FILE1 FILE2\n"
+               "        %s [-h | --help]\n",
+               argv[0], argv[0]);
         return !needs_help;
     }
 
