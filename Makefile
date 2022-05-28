@@ -1,4 +1,4 @@
-CC    = gcc
+CC    = cc
 FLAGS = -Wall -Wextra -O3
 
 PROGRAM = exchange
@@ -13,4 +13,4 @@ clean:
 	rm -f $(PROGRAM)
 
 install: $(PROGRAM)
-	install -Dst $(DEST) $(PROGRAM)
+	install -s $(PROGRAM) $(DEST)

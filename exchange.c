@@ -1,4 +1,13 @@
+#ifdef __linux__
 #define _GNU_SOURCE
+#define EXCHANGE_FUNCTION(file1, file2) \
+    renameat2(AT_FDCWD, (file1), AT_FDCWD, (file2), RENAME_EXCHANGE);
+#elif __APPLE__
+#define EXCHANGE_FUNCTION(file1, file2) \
+    renameatx_np(AT_FDCWD, (file1), AT_FDCWD, (file2), RENAME_SWAP);
+#else
+#error "Target not supported"
+#endif
 
 #include <errno.h>
 #include <fcntl.h>
@@ -28,7 +37,7 @@ int main(int argc, char *argv[]) {
     const char *file1 = argv[1];
     const char *file2 = argv[2];
 
-    int result = renameat2(AT_FDCWD, file1, AT_FDCWD, file2, RENAME_EXCHANGE);
+    int result = EXCHANGE_FUNCTION(file1, file2);
     if (result < 0) {
         fprintf(stderr, "%s\n", strerror(errno));
         return 1;
