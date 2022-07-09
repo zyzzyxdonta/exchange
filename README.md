@@ -1,3 +1,9 @@
+# Moved to GitLab
+
+https://gitlab.com/zyzzyxdonta/exchange
+
+---
+
 # exchange
 
 Atomically exchange two files on Linux or Mac.
